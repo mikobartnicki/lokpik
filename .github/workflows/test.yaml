@@ -1,0 +1,42 @@
+# Tests the compilation of LaTeX files to PDFs.
+#
+# Latest revision: 2025-03-08
+#
+# Created and unlicensed by Mikołaj Bartnicki <mikolaj@bartnicki.org>;
+# please read UNLICENSE file for details.
+
+name: Test LaTeX to PDF compilation
+
+on:
+  push:
+  pull_request:
+
+jobs:
+
+  deklaracja-zwyczajny:
+    uses: mikobartnicki/actions/.github/workflows/test_shell_command.yaml@main
+    with:
+      command_to_test: cd ./documents/deklaracja && pdflatex deklaracja-zwyczajny.tex
+      packages_to_install: texlive-latex-base texlive-latex-recommended texlive-fonts-recommended texlive-lang-polish
+      expected_file: ./documents/deklaracja/deklaracja-zwyczajny.pdf
+
+  deklaracja-wspierajacy:
+    uses: mikobartnicki/actions/.github/workflows/test_shell_command.yaml@main
+    with:
+      command_to_test: cd ./documents/deklaracja && pdflatex deklaracja-wspierajacy.tex
+      packages_to_install: texlive-latex-base texlive-latex-recommended texlive-fonts-recommended texlive-lang-polish
+      expected_file: ./documents/deklaracja/deklaracja-wspierajacy.pdf
+
+  statut:
+    uses: mikobartnicki/actions/.github/workflows/test_shell_command.yaml@main
+    with:
+      command_to_test: cd ./documents/statut && pdflatex statut.tex
+      packages_to_install: texlive-latex-base texlive-latex-recommended texlive-fonts-recommended texlive-lang-polish
+      expected_file: ./documents/statut/statut.pdf
+
+  zaswiadczenie:
+    uses: mikobartnicki/actions/.github/workflows/test_shell_command.yaml@main
+    with:
+      command_to_test: cd ./documents/zaswiadczenie && pdflatex zaswiadczenie.tex
+      packages_to_install: texlive-latex-base texlive-latex-recommended texlive-fonts-recommended texlive-lang-polish
+      expected_file: ./documents/zaswiadczenie/zaswiadczenie.pdf
